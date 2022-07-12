@@ -1,41 +1,35 @@
-pipeline{
-	agent any{
-		stage('one'){
-			echo 'hi, this is deepthi'
-}
-{
-		stage('two')
-			steps{
-				input('do you want to procedd')
-}
-}
-		stage('three'){
-		          when {
-			       not {
-				branch "master"
-				}
-		steps {
-			echo "Hello"
-			}
-}
-		stage('four') {
-				parallel {
-					stage ('Unit Test') {
-							steps {
-								echo "Running the unit test"
-}
-		stage('Integration test') {
-				agent {
-					docker {
-						reuseNode false
-						image 'ubuntu'
-}
-}
-		steps {
-			echo 'running the integration test'
-}
-}
-}
-}
-}
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+     stage('Build') {
+            steps {
+                echo 'Hello Building'
+            }
+        }   
+    
+        stage('Deploy') {
+            steps {
+                echo 'Deploying'
+            }
+        }
+    
+        stage('Test') {
+            steps {
+                echo 'Testing'
+            }
+        }
+        stage('Release') {
+            steps {
+                echo 'Releasing'
+            }
+        }
+    }
+    
+    
 }
